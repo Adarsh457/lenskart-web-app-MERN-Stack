@@ -3,6 +3,7 @@ import { CiHeart } from "react-icons/ci";
 import { FaHeart } from "react-icons/fa";
 import { LuIndianRupee } from "react-icons/lu";
 import { StoreContext } from "../context-and-reducer/StoreContext";
+import { Link } from "react-router-dom";
 
 const Products = ({ item }) => {
   const {
@@ -11,15 +12,22 @@ const Products = ({ item }) => {
     removeLikedProducts,
     toggleLikedProductsModal,
     likedProducts,
+    products,
   } = useContext(StoreContext);
   const [like, setLike] = useState(false);
+  const [isAddedToCart, setIsAddedToCart] = useState(false);
 
   useEffect(() => {
     setLike(likedProducts.find((likedItem) => likedItem.id === item.id));
-  }, [likedProducts, item.id]);
+    //Items Already added to Cart
+    setIsAddedToCart(
+      products.find((addedToCartItem) => addedToCartItem.id === item.id)
+    );
+  }, [likedProducts, item.id, products, isAddedToCart]);
 
   const handleAdd = () => {
     addToCart(item);
+    setIsAddedToCart(true);
   };
   const handleAddLikes = () => {
     addLikedProducts(item);
@@ -71,12 +79,19 @@ const Products = ({ item }) => {
             </strong>
           </div>
           <div className="">
-            <button
-              className="border text-sm md:text-base rounded-2xl p-2 mt-2 bg-blue-600 font-semibold text-white shadow-lg hover:bg-blue-500"
-              onClick={handleAdd}
-            >
-              Add To Cart
-            </button>
+            {isAddedToCart ? (
+              <button className="border text-sm md:text-base rounded-2xl p-2 mt-2 bg-blue-600 font-semibold text-white shadow-lg hover:bg-blue-500">
+                {" "}
+                <Link to="/cart">Go To Cart</Link>{" "}
+              </button>
+            ) : (
+              <button
+                className="border text-sm md:text-base rounded-2xl p-2 mt-2 bg-blue-600 font-semibold text-white shadow-lg hover:bg-blue-500"
+                onClick={handleAdd}
+              >
+                Add To Cart
+              </button>
+            )}
           </div>
         </div>
       </div>
