@@ -1,9 +1,10 @@
-import { useState, React, useContext, useEffect } from "react";
+import { useContext } from "react";
 import { CiHeart } from "react-icons/ci";
 import { FaHeart } from "react-icons/fa";
 import { LuIndianRupee } from "react-icons/lu";
 import { StoreContext } from "../context-and-reducer/StoreContext";
 import { Link } from "react-router-dom";
+import { handleAddToCart } from "../utils/addToCart";
 
 const Products = ({ item }) => {
   const {
@@ -14,21 +15,12 @@ const Products = ({ item }) => {
     likedProducts,
     products,
   } = useContext(StoreContext);
-  const [like, setLike] = useState(false);
-  const [isAddedToCart, setIsAddedToCart] = useState(false);
 
-  useEffect(() => {
-    setLike(likedProducts.find((likedItem) => likedItem.id === item.id));
-    //Items Already added to Cart
-    setIsAddedToCart(
-      products.find((addedToCartItem) => addedToCartItem.id === item.id)
-    );
-  }, [likedProducts, item.id, products, isAddedToCart]);
+  const like = likedProducts.find((likedItem) => likedItem.id === item.id);
+  const isAddedToCart = products.find(
+    (addedToCartItem) => addedToCartItem.id === item.id
+  );
 
-  const handleAdd = () => {
-    addToCart(item);
-    setIsAddedToCart(true);
-  };
   const handleAddLikes = () => {
     addLikedProducts(item);
     toggleLikedProductsModal(true);
@@ -37,7 +29,8 @@ const Products = ({ item }) => {
   const handleRemoveLikedProducts = () => {
     removeLikedProducts(item);
   };
-  const { image, imageOne, imageTwo, name, price, discount } = item;
+
+  const { image, imageOne, name, price, discount } = item;
   return (
     <div className="flex flex-col border m-5 hover:shadow cursor-pointer rounded-xl w-[240px] md:w-auto">
       <div className="p-2">
@@ -45,7 +38,6 @@ const Products = ({ item }) => {
           <button
             className="text-2xl float-right mr-2"
             onClick={() => {
-              setLike((prev) => !prev);
               like ? handleRemoveLikedProducts() : handleAddLikes();
             }}
           >
@@ -81,13 +73,14 @@ const Products = ({ item }) => {
           <div className="">
             {isAddedToCart ? (
               <button className="border text-sm md:text-base rounded-2xl p-2 mt-2 bg-blue-600 font-semibold text-white shadow-lg hover:bg-blue-500">
-                {" "}
-                <Link to="/cart">Go To Cart</Link>{" "}
+                <Link to="/cart">Go To Cart</Link>
               </button>
             ) : (
               <button
                 className="border text-sm md:text-base rounded-2xl p-2 mt-2 bg-blue-600 font-semibold text-white shadow-lg hover:bg-blue-500"
-                onClick={handleAdd}
+                onClick={() =>
+                  handleAddToCart(item, addToCart, () => {}, products)
+                }
               >
                 Add To Cart
               </button>

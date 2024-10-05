@@ -5,7 +5,7 @@ import Navbar from "../../components/Navbar";
 const Login = () => {
   return (
     <>
-      <div className="relative h-screen overflow-hidden">
+      <div className="relative h-screen overflow-hidden md:overflow-y-auto ">
         <Navbar />
         <div className=" w-[100px] h-24 -ml-4 -mt-4 md:w-[200px] md:h-48  bg-blue-600 md:-ml-10 md:-mt-14 rounded-r-full rounded-b-full"></div>
 
@@ -30,7 +30,7 @@ const Login = () => {
           </span>
         </div>
 
-        <div className="rounded shadow-2xl flex flex-wrap md:flex-row items-center m-auto w-1/2 p-4 md:p-8  md:-mt-24">
+        <div className="rounded shadow-2xl flex flex-wrap md:flex-row items-center m-auto w-[60%] p-4 md:p-8  md:-mt-24">
           <img
             src={process.env.PUBLIC_URL + "/login.svg"}
             alt=""
