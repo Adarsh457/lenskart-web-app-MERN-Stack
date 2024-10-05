@@ -13,7 +13,7 @@ const Home = () => {
       <Navbar />
 
       <div
-        className="flex flex-row justify-between items-center gap-4 p-4 md:gap-10 md:p-6 bg-gray-100 overflow-x-auto"
+        className="flex flex-row flex-wrap justify-between items-center gap-4 p-4 bg-gray-100 overflow-x-scroll md:flex-nowrap md:gap-10 md:p-6"
         style={{ scrollbarWidth: "none" }}
       >
         {storeData.map((item, i) => (

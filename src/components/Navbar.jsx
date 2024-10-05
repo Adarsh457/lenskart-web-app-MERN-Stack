@@ -29,21 +29,21 @@ const Navbar = () => {
   return (
     <div className="sticky top-0 bg-white z-40">
       <div className="flex flex-row justify-between items-center p-5 shadow relative">
-        <div className="image_container flex flex-row justify-between items-center">
+        <div className="image_container flex flex-col justify-between items-center md:flex-row">
           <Link to="/">
             <img
               src="https://static.lenskart.com/media/desktop/img/site-images/main_logo.svg"
               alt="Lens"
-              className="w-32 md:w-40"
+              className=" w-28 md:w-40"
             />
           </Link>
           <img
             src="https://static5.lenskart.com/media/uploads/lenskart-helpline-number-new-9999899998-desktop.png"
             alt=""
-            className="w-28 ml-2 md:w-40 md:ml-6"
+            className=" w-20 ml-2 md:w-40 md:ml-6"
           />
         </div>
-        <div className="searchBarHolder w-64 md:w-1/3">
+        <div className="searchBarHolder w-1/2 md:w-1/3">
           <div className="search_baar_container">
             <form action="#">
               <input
@@ -63,7 +63,7 @@ const Navbar = () => {
               <RxCross1 />
             </button>
           </div>
-          <div className="actionLinks ml-5">Track Order</div>
+          <div className="actionLinks ml-5 text-sm md:text-base">Track Order</div>
           <div className="actionLinks flex flex-row justify-between items-center ml-5">
             <Link
               className="actionLinks flex flex-row items-center relative"
@@ -71,7 +71,7 @@ const Navbar = () => {
               to="/"
             >
               <FaRegHeart className="icon mr-2 mb-2 text-xl" />
-              <span>
+              <span className=" text-sm md:text-base">
                 Whishlist
                 <span className="bg-red-500 text-white rounded-full w-5 h-5 absolute -top-3 left-3 text-center">
                   {likedProducts.length}
@@ -85,7 +85,7 @@ const Navbar = () => {
               to="/cart"
             >
               <BsHandbag className="icon mr-2 mb-2 text-xl" />
-              <span>
+              <span className=" text-sm md:text-base">
                 Cart
                 <span className="bg-red-500 text-white rounded-full w-5 h-5 absolute -top-2 left-2 text-center">
                   {CartItem}
@@ -95,7 +95,7 @@ const Navbar = () => {
           </div>
           <div className="actionLinks flex flex-row ml-5">
             {token ? (
-              <div className=" group/profile">
+              <div className=" group/profile -ml-4 md:ml-0">
                 <button
                   className="group shadow border-2 rounded-3xl flex justify-around items-center"
                   onClick={() => setToggleProfile((prev) => !prev)}
@@ -107,7 +107,7 @@ const Navbar = () => {
                   </div>
                 </button>
                 <div
-                  className={`absolute -top-4 bg-white p-4 border rounded-bl-xl rounded-tl-xl shadow-md h-96 w-72  ${toggleProfile ? "-right-5" : "-right-full"}`}
+                  className={`absolute -top-1 bg-white p-4 border rounded-bl-xl rounded-tl-xl shadow-md h-96 w-72 transition-all duration-500  ${toggleProfile ? " -right-28 md:right-0" : "  right-full md:-right-[200%]"}`}
                 >
                   <div className="">
                     <RxCross1
@@ -161,10 +161,10 @@ const Navbar = () => {
             ) : (
               <div className="">
                 <Link to="/login">
-                  <span className="mr-1 ">Sign In </span>&
+                  <span className="mr-1 text-sm md:text-base ">Sign In </span>&
                 </Link>
                 <Link to="/register">
-                  <span className="ml-1">Sign Up </span>
+                  <span className="ml-1 text-sm md:text-base ">Sign Up </span>
                 </Link>
               </div>
             )}
