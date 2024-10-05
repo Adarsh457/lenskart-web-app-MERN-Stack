@@ -30,7 +30,7 @@ const Register = () => {
           </span>
         </div>
 
-        <div className="rounded shadow-2xl flex flex-wrap md:flex-row items-center m-auto w-[60%] p-4 md:p-8 -mt-12 md:-mt-12">
+        <div className="rounded shadow-2xl flex flex-wrap md:flex-row items-center m-auto w-[85%] p-4  md:w-[60%] -mt-10 md:p-8 md:-mt-12">
           <img
             src={process.env.PUBLIC_URL + "/signup.svg"}
             alt=""
@@ -40,7 +40,7 @@ const Register = () => {
             <Form formTitle="Register" submitBtn="Register" formType="register" />
           </div>
         </div>
-        <div className="absolute w-[100px] h-24 -bottom-24 -right-4 md:-bottom-10 md:-right-10 md:w-[200px] md:h-48 bg-blue-600 rounded-l-full rounded-t-full"></div>
+        <div className="absolute w-[100px] h-24 -bottom-32 -right-4 md:-bottom-10 md:-right-10 md:w-[200px] md:h-48 bg-blue-600 rounded-l-full rounded-t-full"></div>
       </div>
     </>
   )
