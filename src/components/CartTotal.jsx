@@ -41,7 +41,7 @@ const CartTotal = () => {
                 alt=""
               />
             </div>
-            <div className="m-2 text-left text-sm">
+            <div className="m-1 text-left text-xs md:text-base">
               <h1 className="font-bold text-black-600">
                 Buying for a loved one ?
               </h1>

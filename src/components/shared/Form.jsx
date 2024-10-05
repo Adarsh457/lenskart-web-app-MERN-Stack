@@ -19,7 +19,7 @@ const Form = ({ formTitle, submitBtn, formType }) => {
     });
   };
   return (
-    <div className="md:border-l md:ml-10 p-3 md:p-5 ">
+    <div className=" p-3 md:border-l md:ml-10 md:p-5 ">
       <form onSubmit={(e) => {
         if(formType==='login') return handleLogin(e,formData.email,formData.password)
         else if(formType === 'register') return handleRegister(e,formData.userName,formData.phoneNumber,formData.email,formData.password)

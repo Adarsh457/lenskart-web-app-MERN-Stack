@@ -50,7 +50,7 @@ const Navbar = () => {
                 type="text"
                 autoComplete="false"
                 placeholder="Search your Item Here!"
-                className="w-full p-1 md:p-2 bg-transparent rounded border-1 ring-1 ring-black outline-none "
+                className="w-full p-1 text-xs bg-transparent rounded border-1 ring-1 ring-black outline-none md:p-2  md:text-base "
               />
             </form>
           </div>

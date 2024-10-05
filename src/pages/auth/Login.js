@@ -30,7 +30,7 @@ const Login = () => {
           </span>
         </div>
 
-        <div className="rounded shadow-2xl flex flex-wrap md:flex-row items-center m-auto w-[60%] p-4 md:p-8  md:-mt-24">
+        <div className="rounded shadow-2xl flex flex-wrap md:flex-row items-center m-auto w-[85%] p-4 md:w-[60%] md:p-8  md:-mt-24">
           <img
             src={process.env.PUBLIC_URL + "/login.svg"}
             alt=""

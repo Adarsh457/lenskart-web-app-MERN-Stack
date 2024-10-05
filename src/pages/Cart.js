@@ -13,7 +13,7 @@ const Cart = () => {
       <Navbar />
       <div className="md:w-3/4 m-10 md:m-40 p-5 md:border text-center ">
         {products.length === 0 ? (
-          <div className="flex justify-around items-center">
+          <div className="flex flex-col justify-around items-center md:flex-row">
             <div className=" border p-4">
               <img
                 src={process.env.PUBLIC_URL + "/empty_cart.svg"}
@@ -21,12 +21,12 @@ const Cart = () => {
                 alt=""
               />
             </div>
-            <div className="">
+            <div className="mt-4 md:mt-0">
               <h1 className="font-bold text-sm md:text-lg">
                 Oops! No Products in Your Cart.
               </h1>
 
-              <button className="border rounded-2xl text-xs md:text-lg p-2 mt-2 bg-blue-600 font-semibold text-white shadow-lg hover:bg-blue-500">
+              <button className="border rounded-2xl text-xs p-2 mt-2 bg-blue-600 font-semibold text-white shadow-lg hover:bg-blue-500 md:text-lg">
                 <Link to="/" className="mt-5">
                   Continue Shopping
                 </Link>
