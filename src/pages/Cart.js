@@ -11,7 +11,7 @@ const Cart = () => {
   return (
     <div className="">
       <Navbar />
-      <div className="md:w-3/4 m-10 md:m-40 p-5 md:border text-center ">
+      <div className=" p-5 md:border text-center md:w-3/4 md:my-56 md:m-auto ">
         {products.length === 0 ? (
           <div className="flex flex-col justify-around items-center md:flex-row">
             <div className=" border p-4">
