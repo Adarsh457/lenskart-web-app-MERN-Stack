@@ -9,7 +9,7 @@ import { CgProfile } from "react-icons/cg";
 import { IoIosArrowDown, IoMdSettings, IoIosLogOut } from "react-icons/io";
 import { MdEmail } from "react-icons/md";
 
-const Navbar = () => {
+const Navbar = ({ setSearchQuery }) => {
   const { products, likedProducts, dispatch, user } = useContext(StoreContext);
   const [toggle, setToggle] = useState(false);
   const [toggleProfile, setToggleProfile] = useState(false);
@@ -51,6 +51,7 @@ const Navbar = () => {
                 autoComplete="false"
                 placeholder="Search your Item Here!"
                 className="w-full p-1 text-xs bg-transparent rounded border-1 ring-1 ring-black outline-none md:p-2  md:text-base "
+                onChange={(e) => setSearchQuery(e.target.value)}
               />
             </form>
           </div>

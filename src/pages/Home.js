@@ -1,4 +1,4 @@
-import { React, useContext } from "react";
+import { React, useState, useContext } from "react";
 import Navbar from "../components/Navbar";
 import { storeData } from "../Data/data";
 import Lens from "../components/Lenses";
@@ -10,9 +10,15 @@ import EyeWearBanners from "../components/shared/EyeWearBanners";
 
 const Home = () => {
   const { likedProducts } = useContext(StoreContext);
+  const [searchQuery, setSearchQuery] = useState("");
+
+   // Filter products by search
+  const filteredData = storeData.filter((item) =>
+    item.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
   return (
     <>
-      <Navbar />
+      <Navbar setSearchQuery={setSearchQuery} />
 
       {/* Lens Section */}
       <section
@@ -37,7 +43,7 @@ const Home = () => {
       <section className="mt-10">
         <h1 className="ml-4 text-center md:text-4xl">Explore More Products </h1>
         <div className="flex flex-row justify-around items-center flex-wrap p-4 mt-4">
-          {storeData.map((item, i) => (
+          {filteredData.map((item, i) => (
             <Products item={item} key={item.id} pageName="product" />
           ))}
         </div>
