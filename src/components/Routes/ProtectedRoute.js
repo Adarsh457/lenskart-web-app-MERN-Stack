@@ -1,14 +1,13 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useCallback, useContext } from "react";
 import API from "../../services/API";
 import { getCurrentUser } from "../../services/authServices";
 import { Navigate } from "react-router-dom";
-import { useContext } from "react";
 import { StoreContext } from "../../context-and-reducer/StoreContext";
 
 const ProtectedRoute = ({ children }) => {
   const { dispatch } = useContext(StoreContext);
 
-  const getUser = async () => {
+  const getUser = useCallback(async () => {
     try {
       const { data } = await API.get("/current-user");
 
@@ -23,11 +22,12 @@ const ProtectedRoute = ({ children }) => {
       localStorage.clear();
       console.log(error);
     }
-  };
+  }, [dispatch]);
 
   useEffect(() => {
     getUser();
-  }, []);
+  }, [getUser]);
+
   if (localStorage.getItem("token")) {
     return children;
   } else {

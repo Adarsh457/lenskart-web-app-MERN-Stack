@@ -8,7 +8,7 @@ const Form = ({ formTitle, submitBtn, formType }) => {
     userName: "",
     email: "",
     password: "",
-    phoneNumber:""
+    phoneNumber: "",
   });
 
   const handleChange = (e) => {
@@ -20,44 +20,49 @@ const Form = ({ formTitle, submitBtn, formType }) => {
   };
   return (
     <div className=" p-3 md:border-l md:ml-10 md:p-5 ">
-      <form onSubmit={(e) => {
-        if(formType==='login') return handleLogin(e,formData.email,formData.password)
-        else if(formType === 'register') return handleRegister(e,formData.userName,formData.phoneNumber,formData.email,formData.password)
-      }}>
-        <h1 className="mb-4 text-blue-500 font-bold tracking-wider">{formTitle}</h1>
+      <form
+        onSubmit={(e) => {
+          if (formType === "login")
+            return handleLogin(e, formData.email, formData.password);
+          else if (formType === "register")
+            return handleRegister(
+              e,
+              formData.userName,
+              formData.phoneNumber,
+              formData.email,
+              formData.password
+            );
+        }}
+      >
+        <h1 className="mb-4 text-blue-500 font-bold tracking-wider">
+          {formTitle}
+        </h1>
         <hr />
         {(() => {
-          //eslint-disable-next-line
           switch (true) {
             case formType === "login":
-              // eslint-disable-next-line no-lone-blocks
-              {
-                return (
-                  <>
-                    <InputType
-                      inputType={"email"}
-                      labelFor={"forEmail"}
-                      labelText={"userEmail"}
-                      name={"email"}
-                      value={formData.email}
-                      onChange={handleChange}
-                    />
+              return (
+                <>
+                  <InputType
+                    inputType={"email"}
+                    labelFor={"forEmail"}
+                    labelText={"userEmail"}
+                    name={"email"}
+                    value={formData.email}
+                    onChange={handleChange}
+                  />
+                  <InputType
+                    inputType={"password"}
+                    labelFor={"forPassword"}
+                    labelText={"password"}
+                    name={"password"}
+                    value={formData.password}
+                    onChange={handleChange}
+                  />
+                </>
+              );
 
-                    <InputType
-                      inputType={"password"}
-                      labelFor={"forPassword"}
-                      labelText={"password"}
-                      name={"password"}
-                      value={formData.password}
-                      onChange={handleChange}
-                    />
-                  </>
-                );
-              }
-
-              break;
-
-            case formType === "register": {
+            case formType === "register":
               return (
                 <>
                   <InputType
@@ -68,54 +73,56 @@ const Form = ({ formTitle, submitBtn, formType }) => {
                     value={formData.userName}
                     onChange={handleChange}
                   />
-
-                    <InputType
-                      inputType={"email"}
-                      labelFor={"forEmail"}
-                      labelText={"userEmail"}
-                      name={"email"}
-                      value={formData.email}
-                      onChange={handleChange}
-                    />
-
-                    <InputType
-                      inputType={"number"}
-                      labelFor={"forNumber"}
-                      labelText={"phoneNumber"}
-                      name={"phoneNumber"}
-                      value={formData.phoneNumber}
-                      onChange={handleChange}
-                    />
-
-                    <InputType
-                      inputType={"password"}
-                      labelFor={"forPassword"}
-                      labelText={"password"}
-                      name={"password"}
-                      value={formData.password}
-                      onChange={handleChange}
-                    />
+                  <InputType
+                    inputType={"email"}
+                    labelFor={"forEmail"}
+                    labelText={"userEmail"}
+                    name={"email"}
+                    value={formData.email}
+                    onChange={handleChange}
+                  />
+                  <InputType
+                    inputType={"number"}
+                    labelFor={"forNumber"}
+                    labelText={"phoneNumber"}
+                    name={"phoneNumber"}
+                    value={formData.phoneNumber}
+                    onChange={handleChange}
+                  />
+                  <InputType
+                    inputType={"password"}
+                    labelFor={"forPassword"}
+                    labelText={"password"}
+                    name={"password"}
+                    value={formData.password}
+                    onChange={handleChange}
+                  />
                 </>
               );
-            }
 
             default:
-              break;
+              return null;
           }
         })()}
 
         <div className="mt-5">
-        {
-          formType === 'login' ? (
-            <p className="font-bold">Not Registered yet ?
-              <Link to='/register' className="text-blue-500" > Register !</Link>
+          {formType === "login" ? (
+            <p className="font-bold">
+              Not Registered yet ?
+              <Link to="/register" className="text-blue-500">
+                {" "}
+                Register !
+              </Link>
             </p>
           ) : (
-            <p className="font-bold">Already a User.
-              <Link to='/login' className="text-blue-500"> Login !</Link>
+            <p className="font-bold">
+              Already a User.
+              <Link to="/login" className="text-blue-500">
+                {" "}
+                Login !
+              </Link>
             </p>
-          )
-        }
+          )}
         </div>
 
         <div className="mt-4">
