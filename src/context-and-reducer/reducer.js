@@ -58,7 +58,6 @@ const storeReducer = (state, action) => {
 
     default:
       throw Error("Cannot match case in reducer");
-      break;
   }
 };
 
