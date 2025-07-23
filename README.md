@@ -1,4 +1,4 @@
-# 🕶️ Lenskart Clone (MERN Stack + React Three Fiber)
+# 🕶️ Lenskart Web App (MERN Stack + React Three Fiber)
 
 A fully functional Lenskart web application built using the MERN stack and React Three Fiber for rich 3D animations.
 
@@ -12,6 +12,7 @@ A fully functional Lenskart web application built using the MERN stack and React
     🎮 Smooth 3D product view visual experience with React Three Fiber.
 
 Deployed and fully responsive across devices.
+
 🔗 https://lenskart-web-app.netlify.app/login
 
 
