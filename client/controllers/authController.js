@@ -10,6 +10,22 @@ const registerController = async (req, res) => {
     if (!userName || !email || !password || !phoneNumber) {
       return res.json({ message: "Please enter all the details" });
     }
+    const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    if (!emailRegex.test(email)) {
+      return res.status(400).json({ message: "Invalid email format" });
+    }
+
+    if (!/^\d{10}$/.test(phoneNumber)) {
+      return res.status(400).json({ message: "Phone number must be 10 digits" });
+    }
+
+    if (password.length < 8) {
+      return res.status(400).json({ message: "Password must be at least 8 characters" });
+    }
+
+    if (userName.trim().length < 4) {
+      return res.status(400).json({ message: "Username must be at least 4 characters" });
+    }
 
     //Check if the user already exist or not
     const userExist = await userModel.findOne({ email: req.body.email });
@@ -22,7 +38,7 @@ const registerController = async (req, res) => {
 
     // Hash the Password
     const salt = await bcrypt.genSalt(10);
-    const hashPassword = await bcrypt.hash(req.body.password, salt);
+    const hashPassword = await bcrypt.hash(password, salt);
     req.body.password = hashPassword;
 
     const user = new userModel(req.body);
@@ -32,33 +48,30 @@ const registerController = async (req, res) => {
       message: "User Registered Successfully",
     });
   } catch (error) {
-    return res.status(500).send({ error: error });
+    return res.status(500).json({ success: false, message: "Server error", error });
   }
 };
 
 const loginController = async (req, res) => {
   try {
     const { email, password } = req.body;
-    //Check emptyness of the incoming data
     if (!email || !password) {
-      return res.json({ message: "Please enter all the details" });
+      return res.status(400).json({ message: "Please enter all the details" });
     }
-    //Check if the user already exist or not
     const userExist = await userModel.findOne({ email });
     if (!userExist) {
       return res
         .status(404)
-        .send({ success: false, message: "Wrong credentials" });
+        .send({ success: false, message: "Invalid credentials" });
     }
-    //Check password match
     const isPasswordMatched = await bcrypt.compare(
       password,
       userExist.password
     );
     if (!isPasswordMatched) {
       return res
-        .status(500)
-        .send({ success: false, message: "Wrong credentials pass" });
+        .status(401)
+        .send({ success: false, message: "Invalid credentials" });
     }
     const token = await jwt.sign(
       { userId: userExist._id },
@@ -74,9 +87,10 @@ const loginController = async (req, res) => {
       userExist,
     });
   } catch (error) {
-    return res.status(500).send({ error: error });
+    return res.status(500).json({ success: false, message: "Server error", error });
   }
 };
+
 
 const currentUserController = async (req, res) => {
   try {
